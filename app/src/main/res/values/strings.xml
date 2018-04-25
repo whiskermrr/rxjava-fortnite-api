@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">rx-fortnite-api</string>
+    <string name="launcher_token">XXX</string>
+    <string name="fortnite_token">XXX</string>
+    <string name="epic_games_email">XXX</string>
+    <string name="epic_games_password">XXX</string>
+</resources>
