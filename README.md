@@ -1,5 +1,5 @@
-# rxAndroid Fortnite API Wrapper
-[![npm](https://img.shields.io/npm/l/express.svg)](https://github.com/whiskermrr/rxandroid-fortnite-api/blob/master/LICENSE)
+# RxAndroid Fortnite API Wrapper
+[![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)](https://github.com/whiskermrr/rxandroid-fortnite-api/blob/master/LICENSE)
 
 ## Usage
 
@@ -24,3 +24,29 @@ Follow these steps to get your launcher and fortnite tokens:
 FortniteApi fortniteApi = new FortniteApi(retrofit, EMAIL, PASSWORD, LAUNCHER_TOKEN, FORTNITE_TOKEN);
 fortniteApi.authenticate();
 ```
+### Battle Royale Stats
+
+```java
+fortniteApi.getUserBattleRoyaleStats("whiskermrr")
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new SingleObserver<List<Stats>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                // e.g. disposables.add(d);
+            }
+
+            @Override
+            public void onSuccess(List<Stats> stats) {
+                // e.g. update ListView adapter
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                // e.g. notify view about error
+            }
+        });
+```
+
+## Contributors
+Just me :) Feel free to join me.
