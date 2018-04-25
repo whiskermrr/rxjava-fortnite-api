@@ -60,7 +60,7 @@ public class FortniteApi {
                 });
     }
 
-    public Single<List<Stats>> getUserBattleRoyalStats(String username) {
+    public Single<List<Stats>> getUserBattleRoyaleStats(String username) {
         if(authenticationToken == null) {
             return authServiceInteractor.authenticate()
                     .flatMap(token ->

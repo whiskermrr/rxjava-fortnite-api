@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     List<Stats> userStats;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         tText = findViewById(R.id.tText);
 
         bSearch.setOnClickListener(view ->
-                fortniteApi.getUserBattleRoyalStats(etUsername.getText().toString())
+                fortniteApi.getUserBattleRoyaleStats(etUsername.getText().toString())
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(stats -> {
