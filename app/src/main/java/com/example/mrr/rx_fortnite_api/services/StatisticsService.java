@@ -2,7 +2,7 @@ package com.example.mrr.rx_fortnite_api.services;
 
 import com.example.mrr.rx_fortnite_api.Utils.FortniteApiConstants;
 import com.example.mrr.rx_fortnite_api.models.Account;
-import com.example.mrr.rx_fortnite_api.models.Stats;
+import com.example.mrr.rx_fortnite_api.models.StatsEntity;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public interface StatisticsService {
     );
 
     @GET(FortniteApiConstants.BR_STATS_URL)
-    Single<List<Stats>> getUserStats(
+    Single<List<StatsEntity>> getUserStats(
             @Header("Authorization") String accessToken,
             @Path("accountId") String accountId
     );

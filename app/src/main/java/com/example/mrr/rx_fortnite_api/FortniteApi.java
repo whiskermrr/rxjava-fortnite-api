@@ -4,12 +4,11 @@ import android.util.Log;
 
 import com.example.mrr.rx_fortnite_api.interactors.AuthServiceInteractor;
 import com.example.mrr.rx_fortnite_api.interactors.StatisticsServiceInteractor;
+import com.example.mrr.rx_fortnite_api.mappers.StatsEntityDataMapper;
 import com.example.mrr.rx_fortnite_api.models.AuthenticationToken;
-import com.example.mrr.rx_fortnite_api.models.Stats;
+import com.example.mrr.rx_fortnite_api.models.BattleRoyaleStats;
 import com.example.mrr.rx_fortnite_api.services.AuthenticationService;
 import com.example.mrr.rx_fortnite_api.services.StatisticsService;
-
-import java.util.List;
 
 import io.reactivex.Single;
 import io.reactivex.SingleObserver;
@@ -60,14 +59,16 @@ public class FortniteApi {
                 });
     }
 
-    public Single<List<Stats>> getUserBattleRoyaleStats(String username) {
+    public Single<BattleRoyaleStats> getUserBattleRoyaleStats(String username) {
         if(authenticationToken == null) {
             return authServiceInteractor.authenticate()
                     .flatMap(token ->
                             statisticsServiceInteractor.getUserStats(username, token.getAccess_token())
+                                    .flatMap(StatsEntityDataMapper::transform)
                     );
         }
-        return  statisticsServiceInteractor.getUserStats(username, authenticationToken.getAccess_token());
+        return  statisticsServiceInteractor.getUserStats(username, authenticationToken.getAccess_token())
+                .flatMap(StatsEntityDataMapper::transform);
     }
 
     public Single<AuthenticationToken> requestRefreshToken() {

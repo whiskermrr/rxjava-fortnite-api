@@ -1,13 +1,13 @@
 package com.example.mrr.rx_fortnite_api.models;
 
-public class Stats {
+public class StatsEntity {
 
     private String name;
     private String window;
     private Integer value;
     private Integer ownerType;
 
-    public Stats(String name, String window, Integer value, Integer ownerType) {
+    public StatsEntity(String name, String window, Integer value, Integer ownerType) {
         this.name = name;
         this.window = window;
         this.value = value;

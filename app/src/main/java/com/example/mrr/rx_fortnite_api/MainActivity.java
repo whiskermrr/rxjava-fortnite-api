@@ -8,11 +8,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.mrr.rx_fortnite_api.models.Stats;
+import com.example.mrr.rx_fortnite_api.models.BattleRoyaleStats;
 import com.jakewharton.retrofit2.adapter.rxjava2.HttpException;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-
-import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -28,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     FortniteApi fortniteApi;
     Retrofit retrofit;
 
-    List<Stats> userStats;
+    BattleRoyaleStats battleRoyaleStats;
 
 
     @Override
@@ -45,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(stats -> {
-                                    userStats = stats;
+                                    battleRoyaleStats = stats;
                                 },
                                 throwable -> {
                                     if(throwable instanceof HttpException) {

@@ -9,6 +9,9 @@ public class FortniteApiConstants {
     // User urls
     public static final String ACCOUNT_URL = "https://persona-public-service-prod06.ol.epicgames.com/persona/api/public/account/lookup";
 
-    // Stats urls
+    // StatsEntity urls
     public static final String BR_STATS_URL = "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/stats/accountId/{accountId}/bulk/window/alltime";
+
+    // catalog urls
+    public static final String CATALOG_URL = "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/storefront/v2/catalog";
 }

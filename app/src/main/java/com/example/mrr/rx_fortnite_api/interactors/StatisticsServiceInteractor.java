@@ -1,7 +1,7 @@
 package com.example.mrr.rx_fortnite_api.interactors;
 
 
-import com.example.mrr.rx_fortnite_api.models.Stats;
+import com.example.mrr.rx_fortnite_api.models.StatsEntity;
 import com.example.mrr.rx_fortnite_api.services.StatisticsService;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public class StatisticsServiceInteractor {
         this.statisticsService = statisticsService;
     }
 
-    public Single<List<Stats>> getUserStats(String username, final String accessToken) {
+    public Single<List<StatsEntity>> getUserStats(String username, final String accessToken) {
         return statisticsService.getUserId("bearer " + accessToken, username)
                 .flatMap(user ->
                     statisticsService.getUserStats("bearer " + accessToken, user.getId())
