@@ -30,15 +30,15 @@ fortniteApi.authenticate();
 fortniteApi.getUserBattleRoyaleStats("whiskermrr")
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(new SingleObserver<List<Stats>>() {
+        .subscribe(new SingleObserver<BattleRoyaleStats>() {
             @Override
             public void onSubscribe(Disposable d) {
                 // e.g. disposables.add(d);
             }
 
             @Override
-            public void onSuccess(List<Stats> stats) {
-                // e.g. update ListView adapter
+            public void onSuccess(BattleRoyaleStats stats) {
+                // e.g. update view
             }
 
             @Override
