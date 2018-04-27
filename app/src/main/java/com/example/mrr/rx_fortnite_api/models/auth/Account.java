@@ -1,13 +1,11 @@
-package com.example.mrr.rx_fortnite_api.models;
+package com.example.mrr.rx_fortnite_api.models.auth;
 
 public class Account {
 
-    String id;
-    String displayName;
+    private String id;
+    private String displayName;
 
-    public Account(String id, String displayName) {
-        this.id = id;
-        this.displayName = displayName;
+    public Account() {
     }
 
     public String getId() {

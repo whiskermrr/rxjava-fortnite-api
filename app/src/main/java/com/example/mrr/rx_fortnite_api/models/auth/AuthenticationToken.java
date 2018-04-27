@@ -1,4 +1,4 @@
-package com.example.mrr.rx_fortnite_api.models;
+package com.example.mrr.rx_fortnite_api.models.auth;
 
 public class AuthenticationToken {
 
@@ -8,11 +8,8 @@ public class AuthenticationToken {
     private String refresh_expires_at;
     private String exchange_token;
 
-    public AuthenticationToken(String access_token, String refresh_token, String expires_at, String refresh_expires_at) {
-        this.access_token = access_token;
-        this.refresh_token = refresh_token;
-        this.expires_at = expires_at;
-        this.refresh_expires_at = refresh_expires_at;
+    public AuthenticationToken() {
+
     }
 
     public String getAccess_token() {

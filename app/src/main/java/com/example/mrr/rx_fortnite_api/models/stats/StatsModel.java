@@ -1,4 +1,4 @@
-package com.example.mrr.rx_fortnite_api.models;
+package com.example.mrr.rx_fortnite_api.models.stats;
 
 public class StatsModel {
 
@@ -30,30 +30,6 @@ public class StatsModel {
         top10 = 0;
         top12 = 0;
         top25 = 0;
-    }
-
-    public StatsModel(Integer score,
-                      Integer matches,
-                      Integer time,
-                      Integer kills,
-                      Integer wins,
-                      Integer top3,
-                      Integer top5,
-                      Integer top6,
-                      Integer top10,
-                      Integer top12,
-                      Integer top25) {
-        this.score = score;
-        this.matches = matches;
-        this.time = time;
-        this.kills = kills;
-        this.wins = wins;
-        this.top3 = top3;
-        this.top5 = top5;
-        this.top6 = top6;
-        this.top10 = top10;
-        this.top12 = top12;
-        this.top25 = top25;
     }
 
     public String getMode() {

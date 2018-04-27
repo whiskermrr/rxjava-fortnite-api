@@ -1,8 +1,8 @@
 package com.example.mrr.rx_fortnite_api.mappers;
 
-import com.example.mrr.rx_fortnite_api.models.BattleRoyaleStats;
-import com.example.mrr.rx_fortnite_api.models.StatsEntity;
-import com.example.mrr.rx_fortnite_api.models.StatsModel;
+import com.example.mrr.rx_fortnite_api.models.stats.BattleRoyaleStats;
+import com.example.mrr.rx_fortnite_api.models.stats.StatsEntity;
+import com.example.mrr.rx_fortnite_api.models.stats.StatsModel;
 
 import java.util.List;
 

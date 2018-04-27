@@ -1,7 +1,7 @@
 package com.example.mrr.rx_fortnite_api.interactors;
 
 
-import com.example.mrr.rx_fortnite_api.models.StatsEntity;
+import com.example.mrr.rx_fortnite_api.models.stats.StatsEntity;
 import com.example.mrr.rx_fortnite_api.services.StatisticsService;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import io.reactivex.Single;
 
 public class StatisticsServiceInteractor {
 
-    StatisticsService statisticsService;
+    private StatisticsService statisticsService;
 
     public StatisticsServiceInteractor(StatisticsService statisticsService) {
         this.statisticsService = statisticsService;

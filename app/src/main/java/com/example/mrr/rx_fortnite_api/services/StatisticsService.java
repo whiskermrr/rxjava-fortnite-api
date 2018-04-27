@@ -1,8 +1,8 @@
 package com.example.mrr.rx_fortnite_api.services;
 
 import com.example.mrr.rx_fortnite_api.Utils.FortniteApiConstants;
-import com.example.mrr.rx_fortnite_api.models.Account;
-import com.example.mrr.rx_fortnite_api.models.StatsEntity;
+import com.example.mrr.rx_fortnite_api.models.auth.Account;
+import com.example.mrr.rx_fortnite_api.models.stats.StatsEntity;
 
 import java.util.List;
 

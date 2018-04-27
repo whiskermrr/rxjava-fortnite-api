@@ -14,4 +14,13 @@ public class FortniteApiConstants {
 
     // catalog urls
     public static final String CATALOG_URL = "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/storefront/v2/catalog";
+
+    // blog urls
+    public static final String BLOG_URL = "https://www.epicgames.com/fortnite/api/blog/getPosts";
+
+    // blog category
+    public static final String PATCH_NOTES = "patch notes";
+    public static final String ANNOUNCEMENTS = "announcements";
+    public static final String EVENTS = "events";
+    public static final String COMMUNITY = "community";
 }

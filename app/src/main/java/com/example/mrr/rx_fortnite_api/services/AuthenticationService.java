@@ -1,7 +1,7 @@
 package com.example.mrr.rx_fortnite_api.services;
 
 import com.example.mrr.rx_fortnite_api.Utils.FortniteApiConstants;
-import com.example.mrr.rx_fortnite_api.models.AuthenticationToken;
+import com.example.mrr.rx_fortnite_api.models.auth.AuthenticationToken;
 
 import java.util.Map;
 

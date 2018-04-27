@@ -3,11 +3,14 @@ package com.example.mrr.rx_fortnite_api;
 import android.util.Log;
 
 import com.example.mrr.rx_fortnite_api.interactors.AuthServiceInteractor;
+import com.example.mrr.rx_fortnite_api.interactors.BlogInteractor;
 import com.example.mrr.rx_fortnite_api.interactors.StatisticsServiceInteractor;
 import com.example.mrr.rx_fortnite_api.mappers.StatsEntityDataMapper;
-import com.example.mrr.rx_fortnite_api.models.AuthenticationToken;
-import com.example.mrr.rx_fortnite_api.models.BattleRoyaleStats;
+import com.example.mrr.rx_fortnite_api.models.auth.AuthenticationToken;
+import com.example.mrr.rx_fortnite_api.models.blogs.BlogHolder;
+import com.example.mrr.rx_fortnite_api.models.stats.BattleRoyaleStats;
 import com.example.mrr.rx_fortnite_api.services.AuthenticationService;
+import com.example.mrr.rx_fortnite_api.services.BlogService;
 import com.example.mrr.rx_fortnite_api.services.StatisticsService;
 
 import io.reactivex.Single;
@@ -22,6 +25,7 @@ public class FortniteApi {
 
     private AuthServiceInteractor authServiceInteractor;
     private StatisticsServiceInteractor statisticsServiceInteractor;
+    private BlogInteractor blogInteractor;
     private AuthenticationToken authenticationToken;
     private CompositeDisposable disposables;
 
@@ -35,6 +39,7 @@ public class FortniteApi {
                 fortniteToken
         );
         statisticsServiceInteractor = new StatisticsServiceInteractor(retrofit.create(StatisticsService.class));
+        blogInteractor = new BlogInteractor(retrofit.create(BlogService.class));
     }
 
     public void authenticate() {
@@ -69,6 +74,10 @@ public class FortniteApi {
         }
         return  statisticsServiceInteractor.getUserStats(username, authenticationToken.getAccess_token())
                 .flatMap(StatsEntityDataMapper::transform);
+    }
+
+    public Single<BlogHolder> getBlogs(String category, String postsPerPage, String offset, String locale) {
+        return blogInteractor.getBlogs(category, postsPerPage, offset, locale);
     }
 
     public Single<AuthenticationToken> requestRefreshToken() {

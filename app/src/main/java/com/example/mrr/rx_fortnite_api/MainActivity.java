@@ -6,16 +6,21 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.mrr.rx_fortnite_api.models.BattleRoyaleStats;
-import com.jakewharton.retrofit2.adapter.rxjava2.HttpException;
+import com.example.mrr.rx_fortnite_api.Utils.FortniteApiConstants;
+import com.example.mrr.rx_fortnite_api.models.blogs.BlogHolder;
+import com.example.mrr.rx_fortnite_api.models.stats.BattleRoyaleStats;
+import com.example.mrr.rx_fortnite_api.models.blogs.Blog;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+
+import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.example.mrr.rx_fortnite_api.Utils.FortniteApiConstants.PATCH_NOTES;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     Retrofit retrofit;
 
     BattleRoyaleStats battleRoyaleStats;
+    BlogHolder blogHolder;
 
 
     @Override
@@ -39,22 +45,15 @@ public class MainActivity extends AppCompatActivity {
         tText = findViewById(R.id.tText);
 
         bSearch.setOnClickListener(view ->
-                fortniteApi.getUserBattleRoyaleStats(etUsername.getText().toString())
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(stats -> {
-                                    battleRoyaleStats = stats;
-                                },
-                                throwable -> {
-                                    if(throwable instanceof HttpException) {
-                                        if(((HttpException) throwable).response().code() == 404) {
-                                            Toast.makeText(MainActivity.this, "User Not Found.", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                    else {
-                                        Log.v("ON SEARCH ERROR", throwable.getMessage());
-                                    }
-                                })
+                fortniteApi.getBlogs(PATCH_NOTES, "5", null, "en-US")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(holder -> {
+                    blogHolder = holder;
+                },
+                throwable -> {
+                    Log.v("BLOGS", throwable.getMessage());
+                })
         );
 
 

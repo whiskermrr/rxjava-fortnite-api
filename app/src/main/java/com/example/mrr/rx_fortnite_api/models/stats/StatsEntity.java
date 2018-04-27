@@ -1,4 +1,4 @@
-package com.example.mrr.rx_fortnite_api.models;
+package com.example.mrr.rx_fortnite_api.models.stats;
 
 public class StatsEntity {
 
@@ -7,11 +7,7 @@ public class StatsEntity {
     private Integer value;
     private Integer ownerType;
 
-    public StatsEntity(String name, String window, Integer value, Integer ownerType) {
-        this.name = name;
-        this.window = window;
-        this.value = value;
-        this.ownerType = ownerType;
+    public StatsEntity() {
     }
 
     public String getName() {

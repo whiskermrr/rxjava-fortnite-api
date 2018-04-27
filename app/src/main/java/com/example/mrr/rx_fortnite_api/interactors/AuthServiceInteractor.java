@@ -1,6 +1,6 @@
 package com.example.mrr.rx_fortnite_api.interactors;
 
-import com.example.mrr.rx_fortnite_api.models.AuthenticationToken;
+import com.example.mrr.rx_fortnite_api.models.auth.AuthenticationToken;
 import com.example.mrr.rx_fortnite_api.services.AuthenticationService;
 
 import org.json.JSONObject;

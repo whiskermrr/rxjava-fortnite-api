@@ -1,4 +1,4 @@
-package com.example.mrr.rx_fortnite_api.models;
+package com.example.mrr.rx_fortnite_api.models.stats;
 
 public class BattleRoyaleStats {
 
@@ -12,13 +12,6 @@ public class BattleRoyaleStats {
         duo = new StatsModel("_p10");
         squad = new StatsModel("_p9");
         lifeTime = new StatsModel("_p");
-    }
-
-    public BattleRoyaleStats(StatsModel solo, StatsModel duo, StatsModel squad, StatsModel lifeTime) {
-        this.solo = solo;
-        this.duo = duo;
-        this.squad = squad;
-        this.lifeTime = lifeTime;
     }
 
     public StatsModel getSolo() {
