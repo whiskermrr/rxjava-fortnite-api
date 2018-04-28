@@ -7,20 +7,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.mrr.rx_fortnite_api.Utils.FortniteApiConstants;
-import com.example.mrr.rx_fortnite_api.models.blogs.BlogHolder;
-import com.example.mrr.rx_fortnite_api.models.stats.BattleRoyaleStats;
-import com.example.mrr.rx_fortnite_api.models.blogs.Blog;
+import com.example.rxjava_fortnite_api.FortniteApi;
+import com.example.rxjava_fortnite_api.Utils.FortniteApiConstants;
+import com.example.rxjava_fortnite_api.models.blogs.BlogHolder;
+import com.example.rxjava_fortnite_api.models.stats.BattleRoyaleStats;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-
-import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.example.mrr.rx_fortnite_api.Utils.FortniteApiConstants.PATCH_NOTES;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         tText = findViewById(R.id.tText);
 
         bSearch.setOnClickListener(view ->
-                fortniteApi.getBlogs(PATCH_NOTES, "5", null, "en-US")
+                fortniteApi.getBlogs(FortniteApiConstants.PATCH_NOTES, "5", null, "en-US")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(holder -> {
