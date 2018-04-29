@@ -6,6 +6,27 @@
 ### Prerequisites
 You need to create EpicGames account and download EpicGames Launcher [here](https://www.epicgames.com/fortnite/pl/buy-now/battle-royale). After this you will need to install Fortnite.
 
+### Installation
+
+Gradle:
+
+```groovy
+dependencies {
+    implementation 'com.whiskermrr:rxjava-fortnite-api:0.2.1'
+}
+```
+
+Maven:
+
+```xml
+<dependency> 
+  <groupId>com.whiskermrr</groupId>
+  <artifactId>rxjava-fortnite-api</artifactId>
+  <version>0.2.1</version>
+  <type>pom</type>
+</dependency>
+```
+
 ### Obtaining Tokens
 Follow these steps to get your launcher and fortnite tokens:
 
