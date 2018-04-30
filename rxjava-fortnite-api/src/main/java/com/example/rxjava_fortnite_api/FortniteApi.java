@@ -76,7 +76,7 @@ public class FortniteApi {
                 .flatMap(StatsEntityDataMapper::transform);
     }
 
-    public Single<BlogHolder> getBlogs(String category, String postsPerPage, String offset, String locale) {
+    public Single<BlogHolder> getBlogs(String category, int postsPerPage, int offset, String locale) {
         return blogInteractor.getBlogs(category, postsPerPage, offset, locale);
     }
 

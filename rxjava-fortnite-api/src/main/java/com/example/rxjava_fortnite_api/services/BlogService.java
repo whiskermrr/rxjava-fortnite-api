@@ -12,8 +12,8 @@ public interface BlogService {
     @GET(FortniteApiConstants.BLOG_URL)
     Single<BlogHolder> getBlogs(
                         @Query("category") String category,
-                        @Query("postsPerPage") String postsPerPage,
-                        @Query("offset") String offset,
+                        @Query("postsPerPage") int postsPerPage,
+                        @Query("offset") int offset,
                         @Query("locale") String locale
     );
 }

@@ -27,6 +27,15 @@
         android:text="Search"
         />
 
+    <Button
+        android:id="@+id/bShowResult"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="Show Result"
+        />
+
     <TextView
         android:id="@+id/tText"
         android:layout_width="wrap_content"

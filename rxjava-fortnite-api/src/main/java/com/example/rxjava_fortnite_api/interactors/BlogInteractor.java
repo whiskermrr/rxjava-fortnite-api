@@ -13,7 +13,7 @@ public class BlogInteractor {
         this.blogService = blogService;
     }
 
-    public Single<BlogHolder> getBlogs(String category, String postPerPages, String offset, String locale) {
+    public Single<BlogHolder> getBlogs(String category, int postPerPages, int offset, String locale) {
         return blogService.getBlogs(category, postPerPages, offset, locale);
     }
 }
