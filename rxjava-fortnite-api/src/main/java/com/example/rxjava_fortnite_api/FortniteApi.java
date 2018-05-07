@@ -67,10 +67,11 @@ public class FortniteApi {
     public Single<BattleRoyaleStats> getUserBattleRoyaleStats(String username) {
         if(authenticationToken == null) {
             return authServiceInteractor.authenticate()
-                    .flatMap(token ->
-                            statisticsServiceInteractor.getUserStats(username, token.getAccess_token())
-                                    .flatMap(StatsEntityDataMapper::transform)
-                    );
+                    .flatMap(token -> {
+                            authenticationToken = token;
+                            return statisticsServiceInteractor.getUserStats(username, token.getAccess_token())
+                                    .flatMap(StatsEntityDataMapper::transform);
+                    });
         }
         return  statisticsServiceInteractor.getUserStats(username, authenticationToken.getAccess_token())
                 .flatMap(StatsEntityDataMapper::transform);
