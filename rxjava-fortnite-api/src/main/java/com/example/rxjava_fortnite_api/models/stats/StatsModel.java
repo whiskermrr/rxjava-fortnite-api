@@ -1,6 +1,8 @@
 package com.example.rxjava_fortnite_api.models.stats;
 
-public class StatsModel {
+import java.io.Serializable;
+
+public class StatsModel implements Serializable {
 
     private String mode;
     private Integer score;

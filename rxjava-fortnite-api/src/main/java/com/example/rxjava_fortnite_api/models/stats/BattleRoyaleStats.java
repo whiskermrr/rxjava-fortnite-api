@@ -1,6 +1,8 @@
 package com.example.rxjava_fortnite_api.models.stats;
 
-public class BattleRoyaleStats {
+import java.io.Serializable;
+
+public class BattleRoyaleStats implements Serializable {
 
     private StatsModel solo;
     private StatsModel duo;

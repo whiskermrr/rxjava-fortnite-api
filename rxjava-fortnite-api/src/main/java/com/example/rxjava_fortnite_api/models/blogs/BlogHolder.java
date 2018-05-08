@@ -1,8 +1,9 @@
 package com.example.rxjava_fortnite_api.models.blogs;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class BlogHolder {
+public class BlogHolder implements Serializable {
 
     private List<Blog> blogList;
     private int blogTotal;

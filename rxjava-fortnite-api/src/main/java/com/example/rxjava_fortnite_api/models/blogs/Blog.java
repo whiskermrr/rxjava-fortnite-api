@@ -2,7 +2,9 @@ package com.example.rxjava_fortnite_api.models.blogs;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Blog {
+import java.io.Serializable;
+
+public class Blog implements Serializable {
 
     private boolean trending;
     private boolean noTopImage;
