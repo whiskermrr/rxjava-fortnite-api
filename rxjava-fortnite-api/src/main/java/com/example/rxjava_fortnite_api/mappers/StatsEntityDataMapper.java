@@ -50,6 +50,11 @@ public class StatsEntityDataMapper {
                     statsModel.setTop25(statsModel.getTop25() + stats.getValue());
             }
         }
+        // TODO: percentage, kdr, scores per match etc.
+        statsModel.setWinPercentage( (float) statsModel.getWins() / statsModel.getMatches() * 100);
+        statsModel.setKDRatio( (float) statsModel.getKills() / (statsModel.getMatches() - statsModel.getWins()));
+        statsModel.setKillsPerMatch( (float) statsModel.getKills() / statsModel.getMatches());
+        statsModel.setScorePerMatch( (float) statsModel.getScore() / statsModel.getMatches());
 
         return statsModel;
     }

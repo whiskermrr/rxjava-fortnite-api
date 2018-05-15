@@ -9,7 +9,7 @@ ext {
     libraryDescription = 'Wrapper for Fortnie Api'
     siteUrl = 'https://github.com/whiskermrr/rxjava-fortnite-api'
     gitUrl = 'https://github.com/whiskermrr/rxjava-fortnite-api.git'
-    libraryVersion = '0.2.5'
+    libraryVersion = '0.2.6'
     developerId = 'whiskermrr'
     developerName = 'Wiktor Wolski'
     developerEmail = 'witek119@gmail.com'

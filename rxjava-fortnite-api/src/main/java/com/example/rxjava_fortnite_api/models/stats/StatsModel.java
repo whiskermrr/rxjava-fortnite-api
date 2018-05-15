@@ -16,6 +16,10 @@ public class StatsModel implements Serializable {
     private Integer top10;
     private Integer top12;
     private Integer top25;
+    private Float winPercentage;
+    private Float KDRatio;
+    private Float killsPerMatch;
+    private Float ScorePerMatch;
 
 
     public StatsModel(String mode) {
@@ -128,5 +132,37 @@ public class StatsModel implements Serializable {
 
     public void setTop25(Integer top25) {
         this.top25 = top25;
+    }
+
+    public Float getWinPercentage() {
+        return winPercentage;
+    }
+
+    public void setWinPercentage(Float winPercentage) {
+        this.winPercentage = winPercentage;
+    }
+
+    public Float getKDRatio() {
+        return KDRatio;
+    }
+
+    public void setKDRatio(Float KDRatio) {
+        this.KDRatio = KDRatio;
+    }
+
+    public Float getKillsPerMatch() {
+        return killsPerMatch;
+    }
+
+    public void setKillsPerMatch(Float killsPerMatch) {
+        this.killsPerMatch = killsPerMatch;
+    }
+
+    public Float getScorePerMatch() {
+        return ScorePerMatch;
+    }
+
+    public void setScorePerMatch(Float scorePerMatch) {
+        ScorePerMatch = scorePerMatch;
     }
 }
