@@ -22,6 +22,8 @@ import java.util.List;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -59,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         bSearch.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               getBlogs();
+               refreshToken();
            }
        });
 
@@ -83,10 +85,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(message ->
+                Log.v("LOGGING INTERCEPTOR", message))
+                .setLevel(HttpLoggingInterceptor.Level.BASIC);
+
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(loggingInterceptor)
+                .build();
+
 
         retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .client(client)
                 .baseUrl("https://account-public-service-prod03.ol.epicgames.com/")
                 .build();
 
@@ -105,6 +116,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         disposables.clear();
+    }
+
+    private void refreshToken() {
+        fortniteApi.requestRefreshToken();
     }
 
     private void getBlogs() {

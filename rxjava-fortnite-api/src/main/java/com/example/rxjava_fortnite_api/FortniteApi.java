@@ -81,7 +81,33 @@ public class FortniteApi {
         return blogInteractor.getBlogs(category, postsPerPage, offset, locale);
     }
 
-    public Single<AuthenticationToken> requestRefreshToken() {
-        return authServiceInteractor.requestRefreshToken(authenticationToken);
+    public void requestRefreshToken() {
+        authServiceInteractor.requestRefreshToken(authenticationToken)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleObserver<AuthenticationToken>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        disposables.add(d);
+                    }
+
+                    @Override
+                    public void onSuccess(AuthenticationToken token) {
+                        authenticationToken = token;
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.v("ON REFRESH TOKEN ERROR", e.getMessage());
+                    }
+                });
+    }
+
+    public AuthenticationToken getAuthenticationToken() {
+        return authenticationToken;
+    }
+
+    public void setAuthenticationToken(AuthenticationToken authenticationToken) {
+        this.authenticationToken = authenticationToken;
     }
 }
