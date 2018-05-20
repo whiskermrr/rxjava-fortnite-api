@@ -13,6 +13,7 @@ import com.example.rxjava_fortnite_api.services.AuthenticationService;
 import com.example.rxjava_fortnite_api.services.BlogService;
 import com.example.rxjava_fortnite_api.services.StatisticsService;
 
+import io.reactivex.Completable;
 import io.reactivex.Single;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -64,6 +65,14 @@ public class FortniteApi {
                 });
     }
 
+    public Completable authenticateCompletable() {
+        return authServiceInteractor.authenticate()
+                .flatMapCompletable(token -> {
+                    authenticationToken = token;
+                    return Completable.complete();
+                });
+    }
+
     public Single<BattleRoyaleStats> getUserBattleRoyaleStats(String username) {
         if(authenticationToken == null) {
             return authServiceInteractor.authenticate()
@@ -100,6 +109,14 @@ public class FortniteApi {
                     public void onError(Throwable e) {
                         Log.v("ON REFRESH TOKEN ERROR", e.getMessage());
                     }
+                });
+    }
+
+    public Completable requestRefreshTokenCompletable() {
+        return authServiceInteractor.requestRefreshToken(authenticationToken)
+                .flatMapCompletable(token -> {
+                    authenticationToken = token;
+                    return Completable.complete();
                 });
     }
 

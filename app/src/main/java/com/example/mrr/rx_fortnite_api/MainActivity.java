@@ -13,14 +13,17 @@ import com.example.rxjava_fortnite_api.Utils.FortniteApiConstants;
 import com.example.rxjava_fortnite_api.models.blogs.Blog;
 import com.example.rxjava_fortnite_api.models.blogs.BlogHolder;
 import com.example.rxjava_fortnite_api.models.stats.BattleRoyaleStats;
+import com.jakewharton.retrofit2.adapter.rxjava2.HttpException;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import io.reactivex.CompletableObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -109,7 +112,29 @@ public class MainActivity extends AppCompatActivity {
                 getResources().getString(R.string.fortnite_token)
         );
 
-        fortniteApi.authenticate();
+        fortniteApi.authenticateCompletable()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new CompletableObserver() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        disposables.add(d);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.v("onComplete", "KURWA DZIALA!!");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.v("onError", "KURWA NIE DZIALA :(");
+                        if(e instanceof HttpException) {
+                            Log.v("HttpException", String.valueOf(((HttpException)e).response().code()));
+                        }
+                    }
+                });
+
     }
 
     @Override
