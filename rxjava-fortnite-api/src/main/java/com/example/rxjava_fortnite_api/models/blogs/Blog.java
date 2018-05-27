@@ -18,6 +18,7 @@ public class Blog implements Serializable {
     private String date;
     private String slug;
     private String locale;
+    private String externalLink;
 
     @SerializedName("cat")
     private String category;
@@ -150,5 +151,13 @@ public class Blog implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getExternalLink() {
+        return externalLink;
+    }
+
+    public void setExternalLink(String externalLink) {
+        this.externalLink = externalLink;
     }
 }

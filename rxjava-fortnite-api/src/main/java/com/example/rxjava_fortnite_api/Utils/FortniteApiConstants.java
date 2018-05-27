@@ -18,6 +18,8 @@ public class FortniteApiConstants {
     // blog urls
     public static final String BLOG_URL = "https://www.epicgames.com/fortnite/api/blog/getPosts";
 
+    public static final String PATCH_NOTE_BASE_URL = "https://www.epicgames.com/fortnite/en-US";
+
     // blog category
     public static final String PATCH_NOTES = "patch notes";
     public static final String ANNOUNCEMENTS = "announcements";
