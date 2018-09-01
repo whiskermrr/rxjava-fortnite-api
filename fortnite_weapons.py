@@ -99,6 +99,7 @@ def main(img):
 
     jsonFile = open("weapons.json", "w")
     jsonFile.write(json.dumps(weaponList, default = lambda x: x.__dict__, indent=4))
+	jsonFile.close()
 
 
 def download_image(weapon, index):
