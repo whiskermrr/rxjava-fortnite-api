@@ -4,8 +4,6 @@ import argparse
 from urllib.request import urlopen
 from bs4 import BeautifulSoup as soup
 import json
-from json import JSONEncoder
-import jsonpickle
 
 
 def args():
