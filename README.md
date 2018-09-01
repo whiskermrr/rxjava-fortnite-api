@@ -107,7 +107,7 @@ It is also capable to download all images of weapons when -img argument of the s
 3 - download images (360px)<br/>
 
 #### How to run script
-Open terminal/cmd and go to directory where fornite_weapons.py is located than execute this command:
+Open terminal/cmd and go to directory where <b>fornite_weapons.py</b> is located than execute this command:
 
 ```bash
     python fortnite_weapons.py -img 2
