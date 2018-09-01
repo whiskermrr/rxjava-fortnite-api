@@ -12,7 +12,7 @@ Gradle:
 
 ```groovy
 dependencies {
-    implementation 'com.whiskermrr:rxjava-fortnite-api:0.2.1'
+    implementation 'com.whiskermrr:rxjava-fortnite-api:0.3.6'
 }
 ```
 
@@ -22,7 +22,7 @@ Maven:
 <dependency> 
   <groupId>com.whiskermrr</groupId>
   <artifactId>rxjava-fortnite-api</artifactId>
-  <version>0.2.1</version>
+  <version>0.3.6</version>
   <type>pom</type>
 </dependency>
 ```
@@ -60,6 +60,32 @@ fortniteApi.getUserBattleRoyaleStats("whiskermrr")
             @Override
             public void onSuccess(BattleRoyaleStats stats) {
                 // e.g. update view
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                // e.g. notify view about error
+            }
+        });
+```
+
+### Blogs
+
+Example of how to get 10 News with offset 0:
+
+```java
+fortniteApi.getBlogs(FortniteApiConstants.PATCH_NOTES, 10, 0, Locale.US.toString())
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new SingleObserver<BlogHolder>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                // e.g. disposables.add(d);
+            }
+
+            @Override
+            public void onSuccess(BlogHolder news) {
+                // e.g. update recyclerview
             }
 
             @Override
