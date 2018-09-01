@@ -95,5 +95,23 @@ fortniteApi.getBlogs(FortniteApiConstants.PATCH_NOTES, 10, 0, Locale.US.toString
         });
 ```
 
+### Python Script to create weapons Json file
+
+If You have installed Python on your computer You can check <b>fortnite_weapons.py</b> file which is in the root directory of repo.<br/>
+Script is getting data about all weapons in Battle Royale Mode from Gamepedia and save them in json file.<br/>
+It is also capable to download all images of weapons when -img argument of the script is specified.<br/>
+-img values:<br/>
+0 - do not download images<br/>
+1 - download images (120px)<br/>
+2 - download images (240px)<br/>
+3 - download images (360px)<br/>
+
+#### How to run script
+Open terminal/cmd and go to directory where fornite_weapons.py is located than execute this command:
+
+```bash
+    python fortnite_weapons.py -img 2
+```
+
 ## Contributors
 Just me :) Feel free to join me.
