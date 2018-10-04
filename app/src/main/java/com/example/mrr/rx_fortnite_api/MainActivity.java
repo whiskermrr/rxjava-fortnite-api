@@ -64,11 +64,6 @@ public class MainActivity extends AppCompatActivity {
         blogHolderList = new ArrayList<>();
         disposables = new CompositeDisposable();
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.MONTH, Calendar.SEPTEMBER);
-        Date date = calendar.getTime();
-        Log.e("DATATA", String.valueOf(date.getTime()));
-
         bSearch.setOnClickListener(view -> getCatalog());
 
         bShowResult.setOnClickListener(view -> {
@@ -153,7 +148,6 @@ public class MainActivity extends AppCompatActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(catalog -> {
-                            Log.e("EEE", catalog.getExpiration());
                         })
         );
     }

@@ -4,7 +4,6 @@ import com.example.rxjava_fortnite_api.Utils.FortniteApiConstants;
 import com.example.rxjava_fortnite_api.models.catalog.Catalog;
 
 import io.reactivex.Single;
-import okhttp3.ResponseBody;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 

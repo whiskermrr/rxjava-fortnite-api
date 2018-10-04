@@ -1,7 +1,5 @@
 package com.example.rxjava_fortnite_api.models.catalog;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.util.List;
 
 public class Catalog {
