@@ -4,13 +4,16 @@ import android.util.Log;
 
 import com.example.rxjava_fortnite_api.interactors.AuthServiceInteractor;
 import com.example.rxjava_fortnite_api.interactors.BlogInteractor;
+import com.example.rxjava_fortnite_api.interactors.CatalogInteractor;
 import com.example.rxjava_fortnite_api.interactors.StatisticsServiceInteractor;
 import com.example.rxjava_fortnite_api.mappers.StatsEntityDataMapper;
 import com.example.rxjava_fortnite_api.models.auth.AuthenticationToken;
 import com.example.rxjava_fortnite_api.models.blogs.BlogHolder;
+import com.example.rxjava_fortnite_api.models.catalog.Catalog;
 import com.example.rxjava_fortnite_api.models.stats.BattleRoyaleStats;
 import com.example.rxjava_fortnite_api.services.AuthenticationService;
 import com.example.rxjava_fortnite_api.services.BlogService;
+import com.example.rxjava_fortnite_api.services.CatalogService;
 import com.example.rxjava_fortnite_api.services.StatisticsService;
 
 import io.reactivex.Completable;
@@ -20,6 +23,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 
 public class FortniteApi {
@@ -27,6 +31,7 @@ public class FortniteApi {
     private AuthServiceInteractor authServiceInteractor;
     private StatisticsServiceInteractor statisticsServiceInteractor;
     private BlogInteractor blogInteractor;
+    private CatalogInteractor catalogInteractor;
     private AuthenticationToken authenticationToken;
     private CompositeDisposable disposables;
 
@@ -41,6 +46,7 @@ public class FortniteApi {
         );
         statisticsServiceInteractor = new StatisticsServiceInteractor(retrofit.create(StatisticsService.class));
         blogInteractor = new BlogInteractor(retrofit.create(BlogService.class));
+        catalogInteractor = new CatalogInteractor(retrofit.create(CatalogService.class));
     }
 
     public void authenticate() {
@@ -126,5 +132,17 @@ public class FortniteApi {
 
     public void setAuthenticationToken(AuthenticationToken authenticationToken) {
         this.authenticationToken = authenticationToken;
+    }
+
+    public Single<Catalog> getCatalog() {
+        if(authenticationToken == null) {
+            return authServiceInteractor.authenticate()
+                    .flatMap(token -> {
+                        authenticationToken = token;
+                        return catalogInteractor.getCatalog(authenticationToken.getAccess_token());
+                    });
+        }
+
+        return catalogInteractor.getCatalog(authenticationToken.getAccess_token());
     }
 }

@@ -13,10 +13,13 @@ import com.example.rxjava_fortnite_api.Utils.FortniteApiConstants;
 import com.example.rxjava_fortnite_api.models.blogs.Blog;
 import com.example.rxjava_fortnite_api.models.blogs.BlogHolder;
 import com.example.rxjava_fortnite_api.models.stats.BattleRoyaleStats;
+import com.google.gson.GsonBuilder;
 import com.jakewharton.retrofit2.adapter.rxjava2.HttpException;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -61,36 +64,33 @@ public class MainActivity extends AppCompatActivity {
         blogHolderList = new ArrayList<>();
         disposables = new CompositeDisposable();
 
-        bSearch.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               refreshToken();
-           }
-       });
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.MONTH, Calendar.SEPTEMBER);
+        Date date = calendar.getTime();
+        Log.e("DATATA", String.valueOf(date.getTime()));
 
-        bShowResult.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                List<Blog> blogs = new ArrayList<>();
-                StringBuilder stringBuilder = new StringBuilder();
+        bSearch.setOnClickListener(view -> getCatalog());
 
-                for(BlogHolder holder : blogHolderList) {
-                    blogs.addAll(holder.getBlogList());
-                }
+        bShowResult.setOnClickListener(view -> {
+            List<Blog> blogs = new ArrayList<>();
+            StringBuilder stringBuilder = new StringBuilder();
 
-                for(Blog blog : blogs) {
-                    stringBuilder.append(blog.getTitle());
-                    stringBuilder.append("\n");
-                }
-
-                String result = stringBuilder.toString();
-                tText.setText(result);
+            for(BlogHolder holder : blogHolderList) {
+                blogs.addAll(holder.getBlogList());
             }
+
+            for(Blog blog : blogs) {
+                stringBuilder.append(blog.getTitle());
+                stringBuilder.append("\n");
+            }
+
+            String result = stringBuilder.toString();
+            tText.setText(result);
         });
 
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(message ->
                 Log.v("LOGGING INTERCEPTOR", message))
-                .setLevel(HttpLoggingInterceptor.Level.BASIC);
+                .setLevel(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
@@ -145,6 +145,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void refreshToken() {
         fortniteApi.requestRefreshToken();
+    }
+
+    private void getCatalog() {
+        disposables.add(
+                fortniteApi.getCatalog()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(catalog -> {
+                            Log.e("EEE", catalog.getExpiration());
+                        })
+        );
     }
 
     private void getBlogs() {
