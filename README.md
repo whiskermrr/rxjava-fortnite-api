@@ -12,7 +12,7 @@ Gradle:
 
 ```groovy
 dependencies {
-    implementation 'com.whiskermrr:rxjava-fortnite-api:0.3.6'
+    implementation 'com.whiskermrr:rxjava-fortnite-api:0.3.7'
 }
 ```
 
